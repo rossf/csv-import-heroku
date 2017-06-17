@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170617095400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "objects", force: :cascade do |t|
+  create_table "csv_objects", force: :cascade do |t|
     t.bigint "object_id"
     t.string "object_type"
     t.json "object_data"

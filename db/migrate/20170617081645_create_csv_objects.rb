@@ -1,6 +1,6 @@
-class CreateObjects < ActiveRecord::Migration[5.1]
+class CreateCsvObjects < ActiveRecord::Migration[5.1]
   def change
-    create_table :objects do |t|
+    create_table :csv_objects do |t|
       t.bigint :object_id
       t.string :object_type
       t.json :object_data
