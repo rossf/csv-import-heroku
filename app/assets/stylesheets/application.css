@@ -12,4 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require normalize
+ *= require skeleton
  */
+
+ div.container {
+   padding-top: 30px;
+ }
