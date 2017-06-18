@@ -1,6 +1,14 @@
 class CsvObjectsController < ApplicationController
   require 'tempfile'
 
+  rescue_from ActionController::ParameterMissing, with: :new_error
+
+  def new_error(exception)
+    flash[:notice] = 'You must select a file to upload.'
+    @object = CSVObject.new
+    render :new, status: 200
+  end
+
   def new
     @object = CSVObject.new
   end
