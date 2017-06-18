@@ -25,6 +25,8 @@ class CSVObject < ApplicationRecord
 
   def version_at(timestamp)
     self.paper_trail.version_at(timestamp)
+  rescue ActiveRecord::StatementInvalid
+    {}
   end
 
   private

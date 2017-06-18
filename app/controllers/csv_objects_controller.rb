@@ -12,6 +12,11 @@ class CsvObjectsController < ApplicationController
   end
 
   def index
+    object = CSVObject.find_by(object_id: params[:object_id], object_type: params[:object_type])
+    if(params[:timestamp])
+      object = object.version_at(Time.at(params[:timestamp].to_i))
+    end
+    render json: object || {}
   end
 
   private
