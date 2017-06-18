@@ -1,0 +1,4 @@
+<%= form_for @object do |form| %>
+  <%= form.file_field :csv, accept: 'text/html' %>
+  <%= form.submit 'Import CSV' %>
+<% end %>

@@ -16,6 +16,12 @@ RSpec.describe CSVObject, :type => :model do
       expected_hash = {"order_id" => 7, "product_ids" => [1,5,3], "status" => "paid", "total" => 2500}
       expect(test_object.object_data).to eq expected_hash
     end
+
+    it 'should allow versions to be retrieved by timestamp' do
+      test_object = CSVObject.find_by(object_id: 1, object_type: 'Invoice').version_at(Time.at(1484731920))
+      expected_hash = {"order_id" => 7, "product_ids" => [1,5,3], "status" => "unpaid", "total" => 2500}
+      expect(test_object.object_data).to eq expected_hash
+    end
   end
 
   context 'with a badly formatted file' do
