@@ -15,7 +15,7 @@ class CsvObjectsController < ApplicationController
 
   def create
     input_csv = permited_params[:csv]
-    @results = CSVObject.import(input_csv.path)
+    @job = CSVProcessingJob.perform_later(input_csv.path)
     render :results
   end
 

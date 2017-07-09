@@ -1,5 +1,11 @@
 <h2>Import a CSV update file</h2>
-<%= form_for @object do |form| %>
+<%= form_for @object, remote: true do |form| %>
   <%= form.file_field :csv, accept: 'text/html' %>
   <%= form.submit 'Import CSV' %>
 <% end %>
+<div class="row" id="status-container" style="display:none;">
+  <div class="twelve column">
+    <h2 class="value-multiplier" id="status">0%</h2>
+    <ul id="errors"><ul>
+  </div>
+</div>

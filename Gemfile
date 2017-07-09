@@ -31,6 +31,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'delayed_job_active_record'
+gem 'daemons'
+gem 'jquery-rails'
 gem 'paper_trail'
 gem 'skeleton-rails'
 

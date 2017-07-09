@@ -1,0 +1,37 @@
+var interval;
+$('#status-container').show();
+interval = setInterval(function(){
+ $.ajax({
+   url: '<%= "/job_status/#{@job.job_id}" %>',
+   success: function(job){
+     var status, progress;
+
+     // If there are errors
+     if (job.import_errors != null) {
+       $('#errors').empty();
+       job.import_errors.forEach(function(error) {
+         $('#errors').append("<li>" + error + "</li>")
+       });
+     }
+
+     if (job.status === 'Completed') {
+       status = job.status;
+       progress = 100;
+       clearInterval(interval);
+     } else if (job.status != null) {
+       status = job.status;
+       progress = job.completed / job.total * 100;
+     } else {
+       progress = 0;
+       status = 'Uploading file';
+     }
+
+     $('#status').text(status + ' ' + progress + '% complete');
+   },
+   error: function(){
+     // Job is no loger in database which means it finished successfuly
+     $('#status').text('Successfully imported!');
+     clearInterval(interval);
+   }
+ })
+},500);

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170617095400) do
+ActiveRecord::Schema.define(version: 20170709130555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,30 @@ ActiveRecord::Schema.define(version: 20170617095400) do
     t.json "object_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "job_statuses", force: :cascade do |t|
+    t.string "active_job_id", null: false
+    t.integer "completed", default: 0
+    t.integer "total"
+    t.string "status"
+    t.string "import_errors", array: true
+    t.index ["active_job_id"], name: "index_job_statuses_on_active_job_id"
   end
 
   create_table "versions", force: :cascade do |t|
